@@ -62,6 +62,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-测试文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/08/测试文档/" class="article-date">
+  <time datetime="2019-06-07T14:21:25.000Z" itemprop="datePublished">2019-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/08/测试文档/">测试文档</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="//yoursite.com/2019/06/08/测试文档/test.jpg" alt="测试文档 测试1"></p>
+<img src="/2019/06/08/测试文档/test.jpg" title="测试文档 测试2">
+
+<img src="//yoursite.com/2019/06/08/测试文档/test.jpg" alt="测试3">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/08/测试文档/" data-id="cjwnsnsru0000qltfqw39g3hs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/07/test/" class="article-date">
@@ -84,12 +123,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>test image<br><img src="test/test.jpg" alt="image"><br></p>
-
+        <p>test image<br><img src="//yoursite.com/2019/06/07/test/test.jpg" alt="image test1"></p>
+<img src="/2019/06/07/test/test.jpg" title="image test2">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/07/test/" data-id="cjwm4y64b0001u6tfve7mrfm8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/07/test/" data-id="cjwnsnsrz0001qltf0rlh7cwh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,12 +187,13 @@
 <h5 id="3-1-Designing-Methodology-and-Architecture"><a href="#3-1-Designing-Methodology-and-Architecture" class="headerlink" title="3.1 Designing Methodology and Architecture"></a>3.1 Designing Methodology and Architecture</h5><p>In this project, the Bottom Up approach is adopted to design the data warehouse. The requirements of Fantastic Fireworks contains the business processes as well as the required source data samples that are used in building the data warehouse schema model. Then the design is started with a single business process, analyzing its measurement and granularity, defining its assist dimensions. This analyzing process is iterated with all other business processes. Finally, these business processes are joint together by connecting the conformed dimensions to generate the whole view of the data warehouse model.</p>
 <p>Considering the choice of the Bottom Up design methodology, the data warehouse was conducted on the basis of the Data Mart Bus architecture which is highly compatible with Kimball’s approach. With regard to this architecture, we choose one of the business subjects from the real business environment as the supermart, then we gradually combine other data marts by conforming the common dimensions.</p>
 <h5 id="3-2-Star-Schema-Design"><a href="#3-2-Star-Schema-Design" class="headerlink" title="3.2 Star Schema Design"></a>3.2 Star Schema Design</h5><p>A star schema comprises one or more centric fact tables and each fact table links its relevant dimension tables. The star metaphor treats the fact table as the “center” of the star and the dimension table as the “point” (Moody &amp; Kortink, 2003). More specifically, the fact table corresponds to a certain business process, while the dimension tables are responsible for providing the analyzing aspects, considered as the granularity. The dimensional modeling consists of four steps, including the finding the business process; declare the granularity; defining the dimension tables and defining the fact tables. Figure 1 shows the star schema of the Fantastic Firework data warehouse. The design of this star schema will be discussed and justified with these four design steps. </p>
-
-<p><img src="Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_starschema.jpg" alt="Figure 1 The Star Schema of Fantastic Firework Data Warehouse"></p>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_starschema.jpg" title="Figure 1 The Star Schema of Fantastic Firework Data Warehouse">
+<p><img src="//yoursite.com/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_starschema.jpg" alt="Figure 1 The Star Schema of Fantastic Firework Data Warehouse"></p>
 <h6 id="3-2-1-Business-Processes"><a href="#3-2-1-Business-Processes" class="headerlink" title="3.2.1 Business Processes"></a>3.2.1 Business Processes</h6><p>According to the business process of the Fantastic Fireworks company, there are two main business subjects in its business domain, including the sales and inventory. Besides, the data sources of the data warehouse are stored in the sales system and inventory system respectively, which should take into consideration when unifying the data format in the conformed dimensions.</p>
 <h6 id="3-2-2-Granularity"><a href="#3-2-2-Granularity" class="headerlink" title="3.2.2 Granularity"></a>3.2.2 Granularity</h6><p>Granularity addresses the lowest level of detailed information stored in the data warehouse. It is used to slice the information cube to satisfy the different information demands of end users. Consequently, different fact tables may have different granularities.</p>
 <p>Regarding the Fantastic Firework project, the sales and inventory are two main business processes(fact tables) of the data warehouse. Referring to the business requirements, the sales answers the question about which consumer has purchased how many products in which store and was served by which employee within a given time. Considering the inventory business event, it answers the question about which product has been ordered how many at a specific point of time. Therefore, the consumer, product, store, employee, and date are the identified granularity of the sales process. The product and date is the required granularity of the inventory process.</p>
 <h6 id="3-2-3-Dimension-Tables"><a href="#3-2-3-Dimension-Tables" class="headerlink" title="3.2.3 Dimension Tables"></a>3.2.3 Dimension Tables</h6><p>As we mentioned above, the dimension table is used to provide the fact tables with multiple analyzing aspects to support multiple detailed levels of information queries. Consequently, we can extract dimension tables from the granularities required by the related business processes. Figure 2 demonstrates the dimensions of each business processes and the common dimension between these two processes.</p>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_busmatrix.jpg" title="Figure 2 Bus Matrix of Fantastic Firework Data Warehouse">
 
 <p>It is clear that the sales has five analyzing dimensions including consumer, product, store, employee as well as date, while the inventory just comprises product and date dimensions. It is worth mentioning that these two business processes have two common product dimensions.</p>
 <p>When designing the data structure of each dimension table, it is important to define the appropriate metadata to integrate the source data and only load the data that is needed. The following paragraphs discuss the detailed design and consideration of each dimension tables with referring to Figure 1. The indexes that are used to support fast query in each dimensional table will be discussed in detail in Appendix 2.</p>
@@ -190,14 +230,16 @@
 <h6 id="3-2-4-Fact-Tables"><a href="#3-2-4-Fact-Tables" class="headerlink" title="3.2.4 Fact Tables"></a>3.2.4 Fact Tables</h6><p>As we mentioned above, the fact table corresponds to the relevant business processes. Therefore, this data warehouse consists of two fact tables including the sales fact table and the inventory fact table. Each fact table comprises the business measurements which used to provide the valuable summarized information that can support decision making. The fact table also contains the foreign keys that link with the dimension tables to do information slicing and selection.</p>
 <p>Sales Fact Table</p>
 <ul>
-<li>Attributes: saleID, Employee_employeeID, Consumer_consumerID, Consumer_validUntilDate, Product_partNumber, Product_validFromDate, Date_dataID, Store_storeID, unitSales, dollarSales, margin, commission</li>
+<li><p>Attributes: saleID, Employee_employeeID, Consumer_consumerID, Consumer_validUntilDate, Product_partNumber, Product_validFromDate, Date_dataID, Store_storeID, unitSales, dollarSales, margin, commission</p>
+</li>
 <li><p>Index: primary(saleID), columnstore(margin, commission, unitSales), foreign key indexes</p>
 <p>The sales fact table integrates the sales table and sales item table in the original source database. The saleID is used as the surrogate key of sales fact table rather than the oderID and line number in the original system. The sales fact table contains the additive measurements of unitSales, dollarSales, margin and commission which can be accumulated among all linked dimensions. In addition, there are five foreign keys that link to the five dimension tables respectively to do information filter and selection around the specific customer, employee, store, product and purchase time in sale records.</p>
 </li>
 </ul>
 <p>Inventory Fact Table</p>
 <ul>
-<li>Attributes: inventoryID, Date_dateID,  Product_partNumber, Product_validFromDate, productDescription, quantity, unitCost</li>
+<li><p>Attributes: inventoryID, Date_dateID,  Product_partNumber, Product_validFromDate, productDescription, quantity, unitCost</p>
+</li>
 <li><p>Index: primary(inventoryID), foreign key indexes</p>
 <p>The inventory fact table uses the inventoryID as the surrogate key to identify the inventory record uniquely. It has two foreign keys to connect with the product dimension table as well as date dimension table so as to assist the analysis of the inventory orders with a given product at a given time.</p>
 </li>
@@ -250,32 +292,40 @@
 <h3 id="Appendix-1-Data-Dictionary"><a href="#Appendix-1-Data-Dictionary" class="headerlink" title="Appendix 1: Data Dictionary"></a>Appendix 1: Data Dictionary</h3><ul>
 <li>Product Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_producttable.jpg" title="Figure 3 Product Table">
 
 <ul>
 <li>Inventory Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_inventorytable.jpg" title="Figure 4 Inventory Table">
 
 <ul>
 <li>Sales Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_saletable.jpg" title="Figure 5 Sales Table">
 
 <ul>
 <li>Customer Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_customertable.jpg" title="Figure 6 Customer Table">
 
 <ul>
 <li>Employee Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_employeetable.jpg" title="Figure 7 Employee Table">
 
 <ul>
 <li>Store Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_storetable.jpg" title="Figure 8 Store Table">
 
 <ul>
 <li>Date Table</li>
 </ul>
+<img src="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/ff_datetable.jpg" title="Figure 9 Date Table">
 
 <h3 id="Appendix-2-SQL-Statements"><a href="#Appendix-2-SQL-Statements" class="headerlink" title="Appendix 2: SQL Statements"></a>Appendix 2: SQL Statements</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;</span><br><span class="line">SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;</span><br><span class="line">SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=&apos;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&apos;;</span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Schema Fireworks</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Schema Fireworks</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE SCHEMA IF NOT EXISTS `Fireworks` DEFAULT CHARACTER SET utf8 ;</span><br><span class="line">USE `Fireworks` ;</span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Store`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Store` (</span><br><span class="line">  `storeID` INT NOT NULL,</span><br><span class="line">  `description` VARCHAR(45) NULL,</span><br><span class="line">  `address` VARCHAR(45) NULL,</span><br><span class="line">  PRIMARY KEY (`storeID`))</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Product`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Product` (</span><br><span class="line">  `partNumber` VARCHAR(45) NOT NULL,</span><br><span class="line">  `validFromDate` DATETIME NOT NULL,</span><br><span class="line">  `description` VARCHAR(45) NULL,</span><br><span class="line">  `unitPrice` DOUBLE NULL,</span><br><span class="line">  PRIMARY KEY (`partNumber`, `validFromDate`))</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Customer`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Customer` (</span><br><span class="line">  `customerID` VARCHAR(45) NOT NULL,</span><br><span class="line">  `validUntilDate` DATETIME NOT NULL,</span><br><span class="line">  `name` VARCHAR(45) NULL,</span><br><span class="line">  `dob` DATETIME NULL,</span><br><span class="line">  `age` INT NULL,</span><br><span class="line">  `postcode` VARCHAR(45) NULL,</span><br><span class="line">  PRIMARY KEY (`customerID`, `validUntilDate`),</span><br><span class="line">  INDEX `age` (`age` ASC) VISIBLE)</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Employee`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Employee` (</span><br><span class="line">  `employeeID` VARCHAR(45) NOT NULL,</span><br><span class="line">  `name` VARCHAR(45) NULL,</span><br><span class="line">  `commissionRate` DOUBLE NULL,</span><br><span class="line">  PRIMARY KEY (`employeeID`))</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Date`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Date` (</span><br><span class="line">  `dateID` INT NOT NULL,</span><br><span class="line">  `Day` INT NULL,</span><br><span class="line">  `Week` INT NULL,</span><br><span class="line">  `Month` INT NULL,</span><br><span class="line">  `Quarter` INT NULL,</span><br><span class="line">  `Year` INT NULL,</span><br><span class="line">  PRIMARY KEY (`dateID`),</span><br><span class="line">  INDEX `Day` (`Day` ASC) VISIBLE,</span><br><span class="line">  INDEX `Week` (`Week` ASC) VISIBLE,</span><br><span class="line">  INDEX `Month` (`Month` ASC) VISIBLE,</span><br><span class="line">  INDEX `Quarter` (`Quarter` ASC) VISIBLE,</span><br><span class="line">  INDEX `Year` (`Year` ASC) VISIBLE,</span><br><span class="line">  INDEX `Date` (`Day` ASC, `Week` ASC, `Month` ASC, `Quarter` ASC, `Year` ASC) VISIBLE)</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Sales`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Sales` (</span><br><span class="line">  `saleID` INT NOT NULL,</span><br><span class="line">  `Employee_employeeID` VARCHAR(45) NOT NULL,</span><br><span class="line">  `Date_dateID` INT NOT NULL,</span><br><span class="line">  `Store_storeID` INT NOT NULL,</span><br><span class="line">  `Product_partNumber` VARCHAR(45) NOT NULL,</span><br><span class="line">  `Product_validFromDate` DATETIME NOT NULL,</span><br><span class="line">  `Customer_customerID` VARCHAR(45) NOT NULL,</span><br><span class="line">  `Customer_validUntilDate` DATETIME NOT NULL,</span><br><span class="line">  `unitSales` INT NULL,</span><br><span class="line">  `salePrice` DOUBLE NULL,</span><br><span class="line">  `dollarSales` DOUBLE NULL,</span><br><span class="line">  `margin` DOUBLE NULL,</span><br><span class="line">  `commission` DOUBLE NULL,</span><br><span class="line">  PRIMARY KEY (`saleID`),</span><br><span class="line">  INDEX `fk_Sales_Employee_idx` (`Employee_employeeID` ASC) VISIBLE,</span><br><span class="line">  INDEX `fk_Sales_Date1_idx` (`Date_dateID` ASC) VISIBLE,</span><br><span class="line">  INDEX `fk_SalesItem_Store1_idx` (`Store_storeID` ASC) VISIBLE,</span><br><span class="line">  INDEX `margin` (`margin` ASC) VISIBLE,</span><br><span class="line">  INDEX `commission` (`commission` ASC) VISIBLE,</span><br><span class="line">  INDEX `fk_Sales_Product1_idx` (`Product_partNumber` ASC, `Product_validFromDate` ASC) VISIBLE,</span><br><span class="line">  INDEX `fk_Sales_Customer1_idx` (`Customer_customerID` ASC, `Customer_validUntilDate` ASC) VISIBLE,</span><br><span class="line">  INDEX `unitSales` (`unitSales` ASC) VISIBLE,</span><br><span class="line">  CONSTRAINT `fk_Sales_Employee`</span><br><span class="line">    FOREIGN KEY (`Employee_employeeID`)</span><br><span class="line">    REFERENCES `Fireworks`.`Employee` (`employeeID`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION,</span><br><span class="line">  CONSTRAINT `fk_Sales_Date1`</span><br><span class="line">    FOREIGN KEY (`Date_dateID`)</span><br><span class="line">    REFERENCES `Fireworks`.`Date` (`dateID`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION,</span><br><span class="line">  CONSTRAINT `fk_SalesItem_Store1`</span><br><span class="line">    FOREIGN KEY (`Store_storeID`)</span><br><span class="line">    REFERENCES `Fireworks`.`Store` (`storeID`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION,</span><br><span class="line">  CONSTRAINT `fk_Sales_Product1`</span><br><span class="line">    FOREIGN KEY (`Product_partNumber` , `Product_validFromDate`)</span><br><span class="line">    REFERENCES `Fireworks`.`Product` (`partNumber` , `validFromDate`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION,</span><br><span class="line">  CONSTRAINT `fk_Sales_Customer1`</span><br><span class="line">    FOREIGN KEY (`Customer_customerID` , `Customer_validUntilDate`)</span><br><span class="line">    REFERENCES `Fireworks`.`Customer` (`customerID` , `validUntilDate`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION)</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">-- Table `Fireworks`.`Inventory`</span><br><span class="line">-- -----------------------------------------------------</span><br><span class="line">CREATE TABLE IF NOT EXISTS `Fireworks`.`Inventory` (</span><br><span class="line">  `inventoryID` INT NOT NULL,</span><br><span class="line">  `Date_dateID` INT NOT NULL,</span><br><span class="line">  `Product_partNumber` VARCHAR(45) NOT NULL,</span><br><span class="line">  `Product_validFromDate` DATETIME NOT NULL,</span><br><span class="line">  `productDescription` VARCHAR(45) NULL,</span><br><span class="line">  `quantity` INT NULL,</span><br><span class="line">  `unitCost` DOUBLE NULL,</span><br><span class="line">  PRIMARY KEY (`inventoryID`),</span><br><span class="line">  INDEX `fk_Inventory_Date1_idx` (`Date_dateID` ASC) VISIBLE,</span><br><span class="line">  INDEX `fk_Inventory_Product1_idx` (`Product_partNumber` ASC, `Product_validFromDate` ASC) VISIBLE,</span><br><span class="line">  CONSTRAINT `fk_Inventory_Date1`</span><br><span class="line">    FOREIGN KEY (`Date_dateID`)</span><br><span class="line">    REFERENCES `Fireworks`.`Date` (`dateID`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION,</span><br><span class="line">  CONSTRAINT `fk_Inventory_Product1`</span><br><span class="line">    FOREIGN KEY (`Product_partNumber` , `Product_validFromDate`)</span><br><span class="line">    REFERENCES `Fireworks`.`Product` (`partNumber` , `validFromDate`)</span><br><span class="line">    ON DELETE NO ACTION</span><br><span class="line">    ON UPDATE NO ACTION)</span><br><span class="line">ENGINE = InnoDB;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SET SQL_MODE=@OLD_SQL_MODE;</span><br><span class="line">SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;</span><br><span class="line">SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;</span><br></pre></td></tr></table></figure>
+
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p>[1] Chaudhuri, S., &amp; Dayal, U. (1997). An overview of data warehousing and OLAP technology. ACM Sigmod record, 26(1), 65-74.</p>
 <p>[2] Kimball, R., &amp; Ross, M. (2011). The data warehouse toolkit: the complete guide to dimensional modeling. John Wiley &amp; Sons.</p>
 <p>[3] Moody, D. L., &amp; Kortink, M. A. R. (2003). From ER models to dimensional models: bridging the gap between OLTP and OLAP design, Part I. Business Intelligence Journal, 8, 7-24.</p>
@@ -283,56 +333,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/" data-id="cjwm4y64t0002u6tfm134y7xe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/" data-id="cjwnsnstc0002qltfq2jfp6q3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Warehousing/">Data Warehousing</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/17/hello-world/" class="article-date">
-  <time datetime="2019-05-17T00:40:35.865Z" itemprop="datePublished">2019-05-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/17/hello-world/" data-id="cjwm4y6440000u6tfv01dgbz6" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -379,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
     </div>
   </div>
 
@@ -392,15 +397,15 @@
       <ul>
         
           <li>
+            <a href="/2019/06/08/测试文档/">测试文档</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/07/test/">test</a>
           </li>
         
           <li>
             <a href="/2019/06/05/Fantastic-Fireworks-Data-Warehousing-Schema-Design/">Fantastic Fireworks Data Warehousing Schema Design</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/17/hello-world/">Hello World</a>
           </li>
         
       </ul>

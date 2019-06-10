@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Ruby&#39;s Blogs">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据仓储,数据">
+
+
+    <meta name="description" content="1  Executive SummaryIn the era of the information explosion, the data warehouse can better assist...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Fantastic Fireworks Data Warehousing ETL Process Design | Ruby&#39;s Blogs</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Ruby&#39;s Blogs" type="application/atom+xml">
+
+
+    <link rel="icon" href="/personal_icon.jpeg">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="RubyFXD">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 你需要一点点勇气 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Ruby&#39;s Blogs</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据/"><i class="fa "></i>数据</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Fantastic Fireworks Data Warehousing ETL Process Design">
+            
+	            Fantastic Fireworks Data Warehousing ETL Process Design
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据/">数据</a> <a class="category-link" href="/categories/数据/项目/">项目</a> <a class="category-link" href="/categories/数据/项目/Fantastic-Fireworks/">Fantastic Fireworks</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据/">数据</a> <a class="tag-link" href="/tags/数据仓储/">数据仓储</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/26</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-Executive-Summary"><a href="#1-Executive-Summary" class="headerlink" title="1  Executive Summary"></a>1  Executive Summary</h3><p>In the era of the information explosion, the data warehouse can better assist the enterprises to manage and analyze their business data, so as to support decision-making. After modeling the star schema for the Fantastic Firework data warehouse, the next step is to pop the source data which may be stored in several independent systems into the designed data warehouse. The data integration and data quality are the critical issues in this step.</p>
+<ul>
+<li>This report will refine the previous star schema. </li>
+<li>Additionally, the report will discuss the design of the ETL process which is used to extract the raw data from the operational systems, transform the raw data to the unified data format to ensure the data quality, and load the processed data to the data warehouse.</li>
+<li>The data dictionary will be attached to provide the user with the definition of the schema and data content of the data warehouse, also it will navigate the end user where the integrated data is sourced from.</li>
+</ul>
+<p>Issues in ETL process design:</p>
+<ul>
+<li>The difference of date type between source systems, need to be unified in the data warehouse.</li>
+<li>Handle low data quality records and invalid inputs (like replacing letter “o” with number “0” in Customer table).</li>
+<li>Data integration across systems (like retrieving the cost per item from Inventory System to sales table).</li>
+</ul>
+<h3 id="2-Design-of-the-ETL-Process"><a href="#2-Design-of-the-ETL-Process" class="headerlink" title="2  Design of the ETL Process"></a>2  Design of the ETL Process</h3><h5 id="2-1-Customer-Dimension-Table"><a href="#2-1-Customer-Dimension-Table" class="headerlink" title="2.1 Customer Dimension Table"></a>2.1 Customer Dimension Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/customerETL.jpg" title="Figure 1 Customer ETL Process">
+<center> Figure 1  Customer ETL Process </center><br>
+
+<ul>
+<li>Extraction: extract data from four source customer datasets. The mapping between source data and extracted data is shown in Figure 2. There are some data issues when extracting data from multiple data sources, including different data type with the same field; misspelled postcode(number 0 and letter O, incorrect length), detect the same customer in different stores. The extraction is executed weekly, the version field is used to handle the historical customer records.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/customerMapping.jpg" title="Figure 2 Customer source-target Data Mapping">
+<center>Figure 2  Customer source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: The first step is to unify the field name and data type after reading from the four source files. Then replace the letter O to number 0 in postcode and handle the misspelled postcode with incorrect postcode length. Meanwhile, detect and merge the same customer record between Darwin and Melbourne store. After that, merge and sort all the customer records, calculate the age of each customer. Finally, add the version number to handle historical records and output to the data table.</li>
+<li>Loading: All customer records should be initially loaded into the data warehouse, the new and modified records should be incrementally loaded into the data warehouse with the constructive merge. The final data records which stored in the data warehouse showing as below Figure 3.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/customerDT.jpg" title="Figure 3 Customer Dimensional Table">
+<center>Figure 3  Customer Dimensional Table</center><br>
+
+<h5 id="2-2-Product-Dimension-Table"><a href="#2-2-Product-Dimension-Table" class="headerlink" title="2.2 Product Dimension Table"></a>2.2 Product Dimension Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/productETL.jpg" title="Figure 4 Product ETL Process">
+<center>Figure 4  Product ETL Process </center><br>
+
+<ul>
+<li>Extraction: Product and Product Order are the source files in the Inventory System. The mapping relationship is shown in Figure 5. The integration challenge is removing a large number of null rows exist in Product Order table and join these two tables. The extraction of this table is weekly. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/productMapping.jpg" title="Figure 5 Product source-target Data Mapping">
+<center>Figure 5  Product source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: the first step is to remove the null rows by filtering those rows whose partNumber field is null. Then retrieve the unitPrice and validFromDate fields from Product Table, it is necessary to extract the year number of orderDate and validFromDate to retrieve to unitPrice for each Product. However, the unitPrice of orders in the year 2019 is not updated, so it remains the same with the unitPrice in 2018. A filter is needed to separate the records in 2019 and set their year number to 2019, then retrieve the corresponding unitPrice. </li>
+<li>Loading: product records that already exist should be initially loaded into the data warehouse. The new records should be incrementally appended into the data warehouse. The sample of data records is shown in Figure 6. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/productDT.jpg" title="Figure 6 Product Dimensional Table">
+<center>Figure 6  Product Dimensional Table</center><br>
+
+<h5 id="2-3-Employee-Dimension-Table"><a href="#2-3-Employee-Dimension-Table" class="headerlink" title="2.3 Employee Dimension Table"></a>2.3 Employee Dimension Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeeETL.jpg" title="Figure 7 Employee ETL Process">
+<center>Figure 7  Employee ETL Process </center><br>
+
+<ul>
+<li>Extraction: the source file in Sales System is SalesPerson. The mapping between source data and extracted data show is shown in Figure 8. The only difference of the data format is Commission rate, which is String in source field but should be DOUBLE in DW for the convenience of calculation. The table should be updated weekly as a result of the possibility of frequent employee changing.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeeMapping.jpg" title="Figure 8 Employee source-target Data Mapping">
+<center>Figure 8  Employee source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: the first step is to do Splitting of the commissionRate to keep the number and get rid of the percent sign. Then use a Formula to convert the integer into two decimal places. The last step is to make sure the data in this field is accurate to two decimal places. </li>
+<li>Loading: all existed records should be initially loaded into the data warehouse. The modified records should be incrementally loaded into the data warehouse with the destructive merge. The sample of data records is shown in Figure 9. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeeDT.jpg" title="Figure 9 Employee Dimensional Table">
+<center>Figure 9  Employee Dimensional Table</center><br>
+
+<h5 id="2-4-Store-Dimension-Table"><a href="#2-4-Store-Dimension-Table" class="headerlink" title="2.4 Store Dimension Table"></a>2.4 Store Dimension Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/storeETL.jpg" title="Figure 10 Store ETL Process">
+<center>Figure 10  Store ETL Process </center><br>
+
+<ul>
+<li>Extraction: the source file in the Sales System is Store. The mapping between source data and extracted data show is shown in Figure 11. The data format remains the same. The table should be updated weekly. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/storeMapping.jpg" title="Figure 11 Store source-target Data Mapping">
+<center>Figure 11  Store source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: no special transformation is needed in this step.</li>
+<li>Loading: current store records should be initially loaded into the data warehouse. Destructive merge is needed to deal with address changing or opening of stores. The sample of data records is shown in Figure 12.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/storeDT.jpg" title="Figure 12 Store Dimensional Table">
+<center>Figure 12  Store Dimensional Table</center><br>
+
+<h5 id="2-5-Date-Dimension-Table"><a href="#2-5-Date-Dimension-Table" class="headerlink" title="2.5 Date Dimension Table"></a>2.5 Date Dimension Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/dateETL.jpg" title="Figure 13 Date ETL Process">
+<center>Figure 13  Date ETL Process </center><br>
+
+<ul>
+<li>Extraction: the date dimension extract data from the data xlsx file. The mapping between source data and target data is addressed in the following Figure 14. There is a data quality issue that the day in the Date field of some records not match with the corresponding Day fields. The extraction frequency should take place daily. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/dateMapping.jpg" title="Figure 14 Date source-target Data Mapping">
+<center>Figure 14  Date source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: After extracting the source data, the data type should be transferred as predefined in the data warehouse. Then the incorrect date value in Date field should be corrected by a formula that calculates the correct date based on the correct fields including Day, Month and Year. </li>
+<li>Loading: The existed date records should be initially loaded into the data warehouse. The new records can be loaded daily in the append way. The final result is shown as figure 15.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/dateDT.jpg" title="Figure 15 Date Dimensional Table">
+<center>Figure 15  Date Dimensional Table</center><br>
+
+<h5 id="2-6-Sales-Fact-Table"><a href="#2-6-Sales-Fact-Table" class="headerlink" title="2.6 Sales Fact Table"></a>2.6 Sales Fact Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/salesETL.jpg" title="Figure 16 Sales ETL Process">
+<center>Figure 16  Sales ETL Process </center><br>
+
+<ul>
+<li>Extraction: the Sales fact table extract data from Order and OrderItem Sources file, also collaborate with the related dimensional table to mapping some of the source fields to the foreign key. The mapping between source data and target data is demonstrated in the following Figure 17. Besides, the extraction is executed weekly.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/salesMapping.jpg" title="Figure 17 Sales source-target Data Mapping">
+<center>Figure 17  Sales source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: the first step is to combine the Order and OrderItem files. Then convert the letter case and Order Date format so as to extract storeID and dateID, which acted as the foreign key, from the store table and data table respectively. Next, change the data type to the format that suitable for later calculation. After that, the database lookup step is used to extract the unitCost from the Product table. The calculator step is then used to calculate the dollarSales and margin. Finally, change the data type to the predefined format when designing a data warehouse.</li>
+<li>Loading: load all the existed records to the data warehouse initially. Then gradually load the incremental records with the append method. The final result is shown in the following figure 18.</li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/salesFT.jpg" title="Figure 18 Sales Fact Table">
+<center>Figure 18  Sales Fact Table</center><br>
+
+<h5 id="2-7-Employees-Fact-Table"><a href="#2-7-Employees-Fact-Table" class="headerlink" title="2.7 Employees Fact Table"></a>2.7 Employees Fact Table</h5><img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeesETL.jpg" title="Figure 19 Employees ETL Process">
+<center>Figure 19  Employees ETL Process </center><br>
+
+<ul>
+<li>Extraction: the source data are from Sales Fact Table and Employee Dimension Table. The ETL steps of Sales Fact Table have already provided the Employee_employeeID and Date_dateID within each sale record. For the convenience of tracking the each-day-commission of employees, the table should be sorted by date. The table should be updated monthly. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeesMapping.jpg" title="Figure 20 Employees source-target Data Mapping">
+<center>Figure 20  Employees source-target Data Mapping</center><br>
+
+<ul>
+<li>Transformation: select the used part of fields is needed in Employees table, including employeeID, dateID and dollarSales. After sorting these records by date, group the records from the same employee and same date. The dollarSales in each group needs to be summed up. Use employeeID to retrieve the commissionRate of each employee from Employee table, then the total commission is easily derived by multiplying commissionRate and dollarSales. </li>
+<li>Loading: the existing records will be initially loaded into the data warehouse. New records of Employees is better to be appended to the table without any overwriting. The sample of data records is shown in Figure 21. </li>
+</ul>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/employeesFT.jpg" title="Figure 21 Employees Fact Table">
+<center>Figure 21  Employees Fact Table</center><br>
+
+<h3 id="3-Design-of-the-Data-Warehouse"><a href="#3-Design-of-the-Data-Warehouse" class="headerlink" title="3  Design of the Data Warehouse"></a>3  Design of the Data Warehouse</h3><ol>
+<li>Change Employee table from the dimension table to the fact table</li>
+<li>Add ‘orderID’ and ‘lineID’’ attributes in the Sales fact table</li>
+<li>Integrate the inventory fact table with Product dimension</li>
+</ol>
+<p>Figure 22 illustrates the redesign of the Fantastic Firework data warehouse, the detailed modification will be addressed in the following paragraphs.</p>
+<img src="/2019/03/26/Fantastic-Fireworks-Data-Warehousing-ETL-Process-Design/redesign.jpg" title="Figure 22 Redesign of Data Warehouse">
+<center> Figure 22 Redesign of Data Warehouse </center><br>
+
+<p>In the first version of the design, there is a dimension table called Employee to help measure the key employees in the Sales fact table. In order to better measure the key employees on the basis of commission, an Employee fact table is created and the detailed design is listed below. </p>
+<ul>
+<li><p>Employee Fact Table:<br><br>Attributes: ID, employeeID, dateID, commission<br><br>The Employee Fact Table uses ID as the surrogate key to identify the records uniquely. It has two foreign keys, employeeID and dateID, in order to connect with Employee dimension table and Date dimension table and get commissionRate as well as time data. The commission is calculated by multiplying the commissionRate and dollarSales. <br></p>
+</li>
+<li><p>Sales Fact Table:<br><br>In terms of the Sales fact table, the surrogate key ‘saleID’ is replaced by OrderID and LineID in order to better match and track the source data from the original system. </p>
+</li>
+</ul>
+<p>Finally, different from the first version, the Inventory Fact Table is integrated into Product Dimension Table, because it is unnecessary to create a Fact Table for Inventory System. </p>
+<h3 id="4-Data-Dictionary"><a href="#4-Data-Dictionary" class="headerlink" title="4  Data Dictionary"></a>4  Data Dictionary</h3><p>There are three types of metadata, including operational metadata, business metadata, and technical metadata. Operational metadata provides the schema of data tables in data warehouse. Business metadata shows the data sources and the mapping relationship between source data to the target data, which has been illustrated in the source-target mapping tables in part two. Technical metadata describes the structural information of the target data table, the extraction and loading rules of the data warehouse.</p>
+<h5 id="4-1-Customer-table-metadata"><a href="#4-1-Customer-table-metadata" class="headerlink" title="4.1 Customer table metadata"></a>4.1 Customer table metadata</h5><ul>
+<li><p>Operational: <br><br>custCode (VARCHAR45), postcode (VARCHAR45), name (VARCHAR45), dob (DATE), validUntilDate (DATE), age (INT), version (INT). Age field is used to support age group query in data warehouse. Version field is used to handle historical records.</p>
+</li>
+<li><p>Business: <br><br>Source Systems: Sales System (Customer-Brisbane.txt, Customer-Darwin.txt, Customer-Melbourne.txt, Customer-Sydney.txt) </p>
+</li>
+<li><p>Technical: <br><br>Primary key: custCode, postcode<br><br>Extraction rules: extract the new and modified records weekly<br><br>Loading rules: initial load and incremental load new record with constructive merge</p>
+</li>
+</ul>
+<h5 id="4-2-Product-table-metadata"><a href="#4-2-Product-table-metadata" class="headerlink" title="4.2 Product  table metadata"></a>4.2 Product  table metadata</h5><ul>
+<li><p>Operational: <br><br>partNumber (VARCHAR 45), validFromDate (DATE), orderDate(DATE), description (VARCHAR100), unitPrice (DOUBLE), quantity (INT), unitCost (DOUBLE). </p>
+</li>
+<li><p>Business: <br><br>Source Systems: Inventory System (Product.csv, ProductOrder.csv) </p>
+</li>
+<li><p>Technical: <br><br>Primary key: partNumber, validFromDate, orderDate<br><br>Extraction rules: extract new records weekly  <br><br>Loading rules: initial load and incremental appending</p>
+</li>
+</ul>
+<h5 id="4-3-Employee-table-metadata"><a href="#4-3-Employee-table-metadata" class="headerlink" title="4.3 Employee table metadata:"></a>4.3 Employee table metadata:</h5><ul>
+<li><p>Operational: <br><br>employeeID (VARCHAR45), name (VARCHAR45), commissionRate (DOUBLE). </p>
+</li>
+<li><p>Business: <br><br>Source System: Sales System (SalesPerson.csv) </p>
+</li>
+<li><p>Technical: <br><br>Primary key: employeeID <br><br>Extraction rules: extract new records and modify exist records weekly <br><br>Loading rules: initial load and incremental load with destructive merge <br></p>
+</li>
+</ul>
+<h5 id="4-4-Store-table-metadata"><a href="#4-4-Store-table-metadata" class="headerlink" title="4.4 Store table metadata:"></a>4.4 Store table metadata:</h5><ul>
+<li><p>Operational: <br><br>storeID (INT), description (VARCHAR45), address (VARCHAR45). </p>
+</li>
+<li><p>Business: <br><br>Source System: Sales System (Store.csv)</p>
+</li>
+<li><p>Technical: <br><br>Primary key: storeID <br><br>Extraction rules: extract new records and modify exist records weekly <br><br>Loading rules: initial load and incremental load with destructive merge <br></p>
+</li>
+</ul>
+<h5 id="4-5-Date-table-metadata"><a href="#4-5-Date-table-metadata" class="headerlink" title="4.5 Date table metadata:"></a>4.5 Date table metadata:</h5><ul>
+<li><p>Operational:<br><br>dataID(INT), Date(DATE), DayofWeek(VARCHAR10), Month(VARCHAR10), Quarter(INT), Year(INT), Day(INT), Season(VARCHAR10).</p>
+</li>
+<li><p>Business:<br><br>Source System: data.xlsx</p>
+</li>
+<li><p>Technical:<br><br>Primary key: dateID <br><br>Extraction rules: extract new records daily <br><br>Loading rules: initial load and append new record daily</p>
+</li>
+</ul>
+<h5 id="4-6-Sales-table-metadata"><a href="#4-6-Sales-table-metadata" class="headerlink" title="4.6 Sales table metadata:"></a>4.6 Sales table metadata:</h5><ul>
+<li><p>Operational:<br><br>OrderID(INT), LineID(INT), Product_partNumber(VARCHAR45), unitSales(INT), salePrice(DOUBLE), Customer_custCode(VARCHAR45), Date_dateID(INT), Store_storeID(INT), Employee_employee(VARCHAR45), dollarSales(DOUBLE), margin(DOUBLE). dollarSales is used to calculate the sales of each item line in order and margin shows the profit.</p>
+</li>
+<li><p>Business:<br><br>Source System: Sales System(Order.csv, OrderItem.csv)</p>
+</li>
+<li><p>Technical:<br><br>Primary key: OrderID, LineID<br><br>Foreign key: Product_partNumber, Customer_xustCode, Date_dataID, Store_storeID, Employee_employeeID<br><br>Extraction rules: extract new records weekly<br>Loading rules: initial load and incremental appending.</p>
+</li>
+</ul>
+<h5 id="4-7-Employees-table-metadata"><a href="#4-7-Employees-table-metadata" class="headerlink" title="4.7 Employees table metadata:"></a>4.7 Employees table metadata:</h5><ul>
+<li><p>Operational: <br><br>ID (INT), Employee_employeeID (VARCHAR45), Date_dateID (INT), commission (DOUBLE). ID is an auto-generated as a surrogate key. Commission is derived by calculating the commissionRate and dollarSales. </p>
+</li>
+<li><p>Business: <br><br>Source System: Sales System (Order.csv, OrderItem.csv, SalesPerson.csv) </p>
+</li>
+<li><p>Technical: <br><br>Primary key: ID <br><br>Foreign key: Employee_employeeID, Date_dateID <br><br>Extraction rules: extract new records monthly<br>Loading rules: initial load and incremental appending </p>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">RubyFXD</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/02/17/Fantastic-Fireworks-Data-Warehousing-Schema-Design/" class="next-post btn btn-default" title="Fantastic Fireworks Data Warehousing Schema Design">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Fantastic Fireworks Data Warehousing Schema Design</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Executive-Summary"><span class="toc-text">1  Executive Summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Design-of-the-ETL-Process"><span class="toc-text">2  Design of the ETL Process</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-Customer-Dimension-Table"><span class="toc-text">2.1 Customer Dimension Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-Product-Dimension-Table"><span class="toc-text">2.2 Product Dimension Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-Employee-Dimension-Table"><span class="toc-text">2.3 Employee Dimension Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-Store-Dimension-Table"><span class="toc-text">2.4 Store Dimension Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-Date-Dimension-Table"><span class="toc-text">2.5 Date Dimension Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-6-Sales-Fact-Table"><span class="toc-text">2.6 Sales Fact Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-7-Employees-Fact-Table"><span class="toc-text">2.7 Employees Fact Table</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Design-of-the-Data-Warehouse"><span class="toc-text">3  Design of the Data Warehouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Data-Dictionary"><span class="toc-text">4  Data Dictionary</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-Customer-table-metadata"><span class="toc-text">4.1 Customer table metadata</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-Product-table-metadata"><span class="toc-text">4.2 Product  table metadata</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-Employee-table-metadata"><span class="toc-text">4.3 Employee table metadata:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-Store-table-metadata"><span class="toc-text">4.4 Store table metadata:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-5-Date-table-metadata"><span class="toc-text">4.5 Date table metadata:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-6-Sales-table-metadata"><span class="toc-text">4.6 Sales table metadata:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-7-Employees-table-metadata"><span class="toc-text">4.7 Employees table metadata:</span></a></li></ol></li>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

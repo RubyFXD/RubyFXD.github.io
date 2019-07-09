@@ -203,22 +203,10 @@
 <h4 id="2-下载图片标签插件"><a href="#2-下载图片标签插件" class="headerlink" title="2.下载图片标签插件"></a>2.下载图片标签插件</h4><p>安装hexo-asset-image插件，用来自动转换图片路径。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd hexo博客目录</span><br><span class="line">$ npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-使用插件引用图片"><a href="#3-使用插件引用图片" class="headerlink" title="3.使用插件引用图片"></a>3.使用插件引用图片</h4><p>将需要md文章中需要饮用的文件放在同名资源文件夹中，通过标签插件直接引用。格式为<code>{ %asset_img 图片名称.图片格式 [title] %}</code>, title可省略不写。标签插件会将自动转化图片的相对路径和public种的日期文件结构一致，解决路径不一致问题。</p>
+<h4 id="3-使用插件引用图片"><a href="#3-使用插件引用图片" class="headerlink" title="3.使用插件引用图片"></a>3.使用插件引用图片</h4><p>将需要md文章中需要饮用的文件放在同名资源文件夹中，通过标签插件直接引用。格式为<code>{ %asset_img 图片名称.图片格式 [title] %}</code>。标签插件会将自动转化图片的相对路径和public种的日期文件结构一致，解决路径不一致问题。</p>
 <h2 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h2><p>图床是将要引用的图片放在可托管的服务器上，在文章中引用服务器上图片的绝对地址，同样不会造成图片文件路径不一致的问题。</p>
 <p>常用图床：</p>
-<ul>
-<li><p><a href="https://portal.qiniu.com" target="_blank" rel="noopener">七牛云</a></p>
-</li>
-<li><p><a href="https://sm.ms" target="_blank" rel="noopener">SM.MS</a></p>
-</li>
-<li><p><a href="https://imgurl.org" target="_blank" rel="noopener">ImgURL</a></p>
-</li>
-<li><p><a href="https://postimages.org" target="_blank" rel="noopener">postimg</a></p>
-</li>
-<li><p><a href="https://www.superbed.cn" target="_blank" rel="noopener">聚合图床</a></p>
-</li>
-</ul>
-
+<h4 id="1-七牛云"><a href="#1-七牛云" class="headerlink" title="1.七牛云"></a>1.<a href="https://portal.qiniu.com" target="_blank" rel="noopener">七牛云</a></h4><h4 id="2-SM-MS"><a href="#2-SM-MS" class="headerlink" title="2.SM.MS"></a>2.<a href="https://sm.ms" target="_blank" rel="noopener">SM.MS</a></h4><h4 id="3-ImgURL"><a href="#3-ImgURL" class="headerlink" title="3.ImgURL"></a>3.<a href="https://imgurl.org" target="_blank" rel="noopener">ImgURL</a></h4><h4 id="4-postimg"><a href="#4-postimg" class="headerlink" title="4.postimg"></a>4.<a href="https://postimages.org" target="_blank" rel="noopener">postimg</a></h4><h4 id="5-聚合图床"><a href="#5-聚合图床" class="headerlink" title="5.聚合图床"></a>5.<a href="https://www.superbed.cn" target="_blank" rel="noopener">聚合图床</a></h4>
     </div>
     
     <div class="post-footer">
@@ -254,7 +242,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图片不显示问题"><span class="toc-text">图片不显示问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片标签插件"><span class="toc-text">图片标签插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-开启资源文件夹功能"><span class="toc-text">1.开启资源文件夹功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-下载图片标签插件"><span class="toc-text">2.下载图片标签插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-使用插件引用图片"><span class="toc-text">3.使用插件引用图片</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#图床"><span class="toc-text">图床</span></a></li>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图片不显示问题"><span class="toc-text">图片不显示问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片标签插件"><span class="toc-text">图片标签插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-开启资源文件夹功能"><span class="toc-text">1.开启资源文件夹功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-下载图片标签插件"><span class="toc-text">2.下载图片标签插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-使用插件引用图片"><span class="toc-text">3.使用插件引用图片</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#图床"><span class="toc-text">图床</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-七牛云"><span class="toc-text">1.七牛云</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SM-MS"><span class="toc-text">2.SM.MS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-ImgURL"><span class="toc-text">3.ImgURL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-postimg"><span class="toc-text">4.postimg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-聚合图床"><span class="toc-text">5.聚合图床</span></a></li></ol></li>
         
     </div>
 </aside>

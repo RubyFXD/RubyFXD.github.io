@@ -180,11 +180,11 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><h4 id="1-什么是Hexo"><a href="#1-什么是Hexo" class="headerlink" title="1. 什么是Hexo?"></a>1. 什么是Hexo?</h4><p>Hexo是一个使用node.js开发的命令行脚本工具。Hexo是一个简单、高效的博客框架，可以把Markdown文件翻译成html页面。将Hexo在本地生成的静态网站部署到web服务器上，形成可供访问的个人博客站点。</p>
-<h4 id="2-GitHub账号"><a href="#2-GitHub账号" class="headerlink" title="2. GitHub账号"></a>2. GitHub账号</h4><p>Hexo是一个静态博客框架，产生的html文件及相关文件需要部署到web服务器上。</p>
-<p>GitHub Pages是面向用户、组织和项目的公共静态页面搭建托管服务，站点可以被免费托管在GitHub上。GitHub Pages相当于一个web服务器，可以通过git将本地Hexo生成的静态站点上传到GitHub Pages上。</p>
-<h4 id="3-node-js"><a href="#3-node-js" class="headerlink" title="3. node.js"></a>3. node.js</h4><p>node.js是一种javascript的运行环境，它把浏览器的解释器封装起来，支持javascript脱离浏览器运行。Hexo是基于node.js开发的工具，需要node.js支持，所以安装Hexo之前确认安装node.js.</p>
-<h4 id="4-环境配置-git-node-js"><a href="#4-环境配置-git-node-js" class="headerlink" title="4. 环境配置 git+node.js"></a>4. 环境配置 git+node.js</h4><p>(1) 检查是否安装git和node.js</p>
+        <h2 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h2><h3 id="1-什么是Hexo"><a href="#1-什么是Hexo" class="headerlink" title="1. 什么是Hexo?"></a>1. 什么是Hexo?</h3><p>Hexo是一个使用node.js开发的命令行脚本工具。Hexo是一个简单、高效的博客框架，可以把Markdown文件翻译成html页面。将Hexo在本地生成的静态网站部署到web服务器上，形成可供访问的个人博客站点。<br></p>
+<h3 id="2-GitHub账号"><a href="#2-GitHub账号" class="headerlink" title="2. GitHub账号"></a>2. GitHub账号</h3><p>Hexo是一个静态博客框架，产生的html文件及相关文件需要部署到web服务器上。</p>
+<p>GitHub Pages是面向用户、组织和项目的公共静态页面搭建托管服务，站点可以被免费托管在GitHub上。GitHub Pages相当于一个web服务器，可以通过git将本地Hexo生成的静态站点上传到GitHub Pages上。<br></p>
+<h3 id="3-node-js"><a href="#3-node-js" class="headerlink" title="3. node.js"></a>3. node.js</h3><p>node.js是一种javascript的运行环境，它把浏览器的解释器封装起来，支持javascript脱离浏览器运行。Hexo是基于node.js开发的工具，需要node.js支持，所以安装Hexo之前确认安装node.js.<br></p>
+<h3 id="4-环境配置-git-node-js"><a href="#4-环境配置-git-node-js" class="headerlink" title="4. 环境配置 git+node.js"></a>4. 环境配置 git+node.js</h3><p>(1) 检查是否安装git和node.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">$ node -v</span><br></pre></td></tr></table></figure>
 
 <p>如果已经安装，跳到二、Hexo安装配置；如果没有安装mac用户可以直接使用Homebrew命令安装。</p>
@@ -201,8 +201,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node --version</span><br><span class="line">$ npm --version</span><br></pre></td></tr></table></figure>
 
 <p>tips: npm是和node.js一起安装的包管理工具，用来管理nodejs的第三方插件，支持用户从npm服务器下载第三方包到本地使用。</p>
-<h3 id="二、Hexo安装配置"><a href="#二、Hexo安装配置" class="headerlink" title="二、Hexo安装配置"></a>二、Hexo安装配置</h3><p>传送门：<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官方使用文档</a></p>
-<h4 id="1-使用npm进行Hexo安装"><a href="#1-使用npm进行Hexo安装" class="headerlink" title="1.使用npm进行Hexo安装"></a>1.使用npm进行Hexo安装</h4><p><code>$ npm install -g hexo-cli</code></p>
+<br>
+
+<h2 id="二、Hexo安装配置"><a href="#二、Hexo安装配置" class="headerlink" title="二、Hexo安装配置"></a>二、Hexo安装配置</h2><p>传送门：<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo官方使用文档</a><br></p>
+<h3 id="1-使用npm进行Hexo安装"><a href="#1-使用npm进行Hexo安装" class="headerlink" title="1.使用npm进行Hexo安装"></a>1.使用npm进行Hexo安装</h3><p><code>$ npm install -g hexo-cli</code></p>
 <p>tips: 可能会出现permission denied error，如图1；解决方法如图二。</p>
 <img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/hexo_install_error.jpg" title="Figure 1 Hexo Install Error">
 <center> Figure 1  Hexo Install Error </center><br>
@@ -210,7 +212,7 @@
 <img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/solotion_hexo_install.jpg" title="Figure 2 Solution">
 <center> Figure 2 Solution </center><br>
 
-<h4 id="2-Hexo建站"><a href="#2-Hexo建站" class="headerlink" title="2. Hexo建站"></a>2. Hexo建站</h4><p>Hexo安装完成后，执行以下命令，Hexo将会在指定文件夹中新建所需要的文件。</p>
+<h3 id="2-Hexo建站"><a href="#2-Hexo建站" class="headerlink" title="2. Hexo建站"></a>2. Hexo建站</h3><p>Hexo安装完成后，执行以下命令，Hexo将会在指定文件夹中新建所需要的文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">e.g. $ hexo init mybolgs</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 
 <p>命令执行后，指定<folder>文件夹下的目录结构如下：</folder></p>
@@ -222,14 +224,14 @@
 <li>package.json应用程序信息</li>
 <li>Scaffolds模版文件夹，新建文章的时候，Hexo会根据scaffold中的模版建立文件。Hexo模版是在新建markdown文件中默认的填充内容</li>
 <li>source资源文件夹，存放用户资源。markdown和HTML文件会被解析并放到public文件夹，其他文件（除了被忽略文件）将会被拷贝到puclic文件夹。</li>
-<li>Themes主题文件夹，Hexo会根据主题来生成相应的静态页面</li>
+<li>Themes主题文件夹，Hexo会根据主题来生成相应的静态页面<br></li>
 </ul>
-<h4 id="3-Hexo站点测试"><a href="#3-Hexo站点测试" class="headerlink" title="3.Hexo站点测试"></a>3.Hexo站点测试</h4><p><code>$ hexo server</code></p>
-<p>hexo server 命令启动本地Hexo服务器，浏览器中输入: <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 如果访问到Hexo Hello World页面，证明 Hexo本地配置成功，个人站点建立成功。</p>
-<h4 id="4-Hexo-config-yml网站配置"><a href="#4-Hexo-config-yml网站配置" class="headerlink" title="4.Hexo _config.yml网站配置"></a>4.Hexo _config.yml网站配置</h4><p>Hexo建站后，可以对_config.yml文件进行修改进行网站配置。修改_config.yml文件可以改变如网站标题，站点目录结构，文章分类标签，时区和日期格式等参数。</p>
+<h3 id="3-Hexo站点测试"><a href="#3-Hexo站点测试" class="headerlink" title="3.Hexo站点测试"></a>3.Hexo站点测试</h3><p><code>$ hexo server</code></p>
+<p>hexo server 命令启动本地Hexo服务器，浏览器中输入: <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 如果访问到Hexo Hello World页面，证明 Hexo本地配置成功，个人站点建立成功。<br></p>
+<h3 id="4-Hexo-config-yml网站配置"><a href="#4-Hexo-config-yml网站配置" class="headerlink" title="4.Hexo _config.yml网站配置"></a>4.Hexo _config.yml网站配置</h3><p>Hexo建站后，可以对_config.yml文件进行修改进行网站配置。修改_config.yml文件可以改变如网站标题，站点目录结构，文章分类标签，时区和日期格式等参数。</p>
 <p>如果不进行设置，Hexo将采用_config.yml中默认值。新手可以跳过此步骤，先熟悉如何利用Hexo新建文章，生成html页面及部署等必要步骤。</p>
-<p>传送门：<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">Hexo官方_config.yml配置说明</a></p>
-<h4 id="5-Hexo-写博文"><a href="#5-Hexo-写博文" class="headerlink" title="5.Hexo 写博文"></a>5.Hexo 写博文</h4><p>（1）新建文章</p>
+<p>传送门：<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">Hexo官方_config.yml配置说明</a><br></p>
+<h3 id="5-Hexo-写博文"><a href="#5-Hexo-写博文" class="headerlink" title="5.Hexo 写博文"></a>5.Hexo 写博文</h3><p>（1）新建文章</p>
 <p><code>$ hexo new [layout] &lt;title&gt;</code></p>
 <p>该命令用来新建一篇文章，[layout]可以省略，如果没有设置，默认使用 _config.yml中default_layout 参数。layout用来指定生成的页面布局，默认default_layout是post（文章详情页面布局），即生成博文页面的html页面布局。</p>
 <p>tips: 如果title标题中有空格，需要双引号扩起来。</p>
@@ -241,9 +243,11 @@
 <p>（3）启动本地服务器测试</p>
 <p><code>$ hexo server</code></p>
 <p>访问<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>，可以查看本地生成的个人站点，找到刚生成的文章。</p>
-<h3 id="三、Hexo部署到Git"><a href="#三、Hexo部署到Git" class="headerlink" title="三、Hexo部署到Git"></a>三、Hexo部署到Git</h3><h4 id="1-配置github-pages"><a href="#1-配置github-pages" class="headerlink" title="1.配置github pages"></a>1.配置github pages</h4><p>在GitHub上新建一个仓库，命名为账户名.github.io。e.g. zhangsan.github.io</p>
-<p><a href="https://pages.github.com/" target="_blank" rel="noopener">github pages使用传送门</a></p>
-<h4 id="2-修改Hexo配置文件关联github-pages"><a href="#2-修改Hexo配置文件关联github-pages" class="headerlink" title="2.修改Hexo配置文件关联github pages"></a>2.修改Hexo配置文件关联github pages</h4><p>（1）进入hexo站点文件夹下</p>
+<br>
+
+<h2 id="三、Hexo部署到Git"><a href="#三、Hexo部署到Git" class="headerlink" title="三、Hexo部署到Git"></a>三、Hexo部署到Git</h2><h3 id="1-配置github-pages"><a href="#1-配置github-pages" class="headerlink" title="1.配置github pages"></a>1.配置github pages</h3><p>在GitHub上新建一个仓库，命名为账户名.github.io。e.g. zhangsan.github.io</p>
+<p><a href="https://pages.github.com/" target="_blank" rel="noopener">github pages使用传送门</a><br></p>
+<h3 id="2-修改Hexo配置文件关联github-pages"><a href="#2-修改Hexo配置文件关联github-pages" class="headerlink" title="2.修改Hexo配置文件关联github pages"></a>2.修改Hexo配置文件关联github pages</h3><p>（1）进入hexo站点文件夹下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">e.g. $ cd myblogs</span><br></pre></td></tr></table></figure>
 
 <p>(2) 更改站点文件夹下_config.yml文件</p>
@@ -253,26 +257,28 @@
 <img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/config.jpg" title="配置">
 <center> Figure 4 _config.yml配置 </center><br>
 
-<h4 id="3-安装插件"><a href="#3-安装插件" class="headerlink" title="3.安装插件"></a>3.安装插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="3-安装插件"><a href="#3-安装插件" class="headerlink" title="3.安装插件"></a>3.安装插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-将本地站点部署到GitHub上"><a href="#4-将本地站点部署到GitHub上" class="headerlink" title="4.将本地站点部署到GitHub上"></a>4.将本地站点部署到GitHub上</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 清理已经生成的弃用文件</span><br><span class="line">$ hexo clean</span><br><span class="line">// 生成新的站点</span><br><span class="line">$ hexo generate</span><br><span class="line">// 将生成的站点推送到GitHub Pages仓库</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="4-将本地站点部署到GitHub上"><a href="#4-将本地站点部署到GitHub上" class="headerlink" title="4.将本地站点部署到GitHub上"></a>4.将本地站点部署到GitHub上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 清理已经生成的弃用文件</span><br><span class="line">$ hexo clean</span><br><span class="line">// 生成新的站点</span><br><span class="line">$ hexo generate</span><br><span class="line">// 将生成的站点推送到GitHub Pages仓库</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>部署完成后，通过浏览器输入 https://账户名.github.io/ 访问你的个人博客。</p>
-<h3 id="四、更换主题"><a href="#四、更换主题" class="headerlink" title="四、更换主题"></a>四、更换主题</h3><h4 id="1-将主题clone到themes目录下"><a href="#1-将主题clone到themes目录下" class="headerlink" title="1. 将主题clone到themes目录下"></a>1. 将主题clone到themes目录下</h4><p>可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo官方主题库</a>中找到自己喜欢的主题，将主题对应的git仓库clone到本地博客文件夹themes目录下，使用 $ git clone url命令，例如下</p>
+<br>
+
+<h2 id="四、更换主题"><a href="#四、更换主题" class="headerlink" title="四、更换主题"></a>四、更换主题</h2><h3 id="1-将主题clone到themes目录下"><a href="#1-将主题clone到themes目录下" class="headerlink" title="1. 将主题clone到themes目录下"></a>1. 将主题clone到themes目录下</h3><p>可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo官方主题库</a>中找到自己喜欢的主题，将主题对应的git仓库clone到本地博客文件夹themes目录下，使用 $ git clone url命令，例如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd &lt;博客存放的folder&gt;</span><br><span class="line">$ git clone https://github.com/shenliyang/hexo-theme-snippet.git themes/hexo-theme-snippet</span><br></pre></td></tr></table></figure>
 
 <p>themes/hexo-theme-snippet指定要将该主题clone到themes的hexo-theme-snippet文件下，效果如下图</p>
 <img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/theme2.jpg" title="配置">
 <center> Figure 5 clone主题 </center><br>
 
-<h4 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2. 修改配置文件"></a>2. 修改配置文件</h4><img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/theme_modify.jpg" title="配置">
+<h3 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2. 修改配置文件"></a>2. 修改配置文件</h3><img src="/2019/07/06/OSX下使用Hexo和GitHub搭建个人博客/theme_modify.jpg" title="配置">
 <center> Figure 6 修改配置文件 </center><br>
 
 <p>圈1: Hexo根目录下的配置文件 _config.yml是用来配置整个站点的。打开此配置文件，修改主题。</p>
 <p><code>theme: hexo-theme-snippet</code></p>
 <p>圈2: Hexo/themes/某个主题文件夹 下的 _config.yml是用来配置这个主题的相关参数的，根据你clone的主题进行具体配置，作者大大写的更加详细～</p>
 <p><a href="https://github.com/shenliyang/hexo-theme-snippet#hexo-theme-snippet" target="_blank" rel="noopener">snippet主题配置传送门</a>。</p>
-<h4 id="3-清理并重新生成站点"><a href="#3-清理并重新生成站点" class="headerlink" title="3. 清理并重新生成站点"></a>3. 清理并重新生成站点</h4><p>更换主题之后，可以将之前主题生成的静态文件清理，然后根据当前主题重新生成站点，并部署。</p>
+<h3 id="3-清理并重新生成站点"><a href="#3-清理并重新生成站点" class="headerlink" title="3. 清理并重新生成站点"></a>3. 清理并重新生成站点</h3><p>更换主题之后，可以将之前主题生成的静态文件清理，然后根据当前主题重新生成站点，并部署。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 
@@ -311,7 +317,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、准备"><span class="toc-text">一、准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是Hexo"><span class="toc-text">1. 什么是Hexo?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-GitHub账号"><span class="toc-text">2. GitHub账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-node-js"><span class="toc-text">3. node.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-环境配置-git-node-js"><span class="toc-text">4. 环境配置 git+node.js</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Hexo安装配置"><span class="toc-text">二、Hexo安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-使用npm进行Hexo安装"><span class="toc-text">1.使用npm进行Hexo安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Hexo建站"><span class="toc-text">2. Hexo建站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Hexo站点测试"><span class="toc-text">3.Hexo站点测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Hexo-config-yml网站配置"><span class="toc-text">4.Hexo _config.yml网站配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Hexo-写博文"><span class="toc-text">5.Hexo 写博文</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Hexo部署到Git"><span class="toc-text">三、Hexo部署到Git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-配置github-pages"><span class="toc-text">1.配置github pages</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-修改Hexo配置文件关联github-pages"><span class="toc-text">2.修改Hexo配置文件关联github pages</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-安装插件"><span class="toc-text">3.安装插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-将本地站点部署到GitHub上"><span class="toc-text">4.将本地站点部署到GitHub上</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、更换主题"><span class="toc-text">四、更换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-将主题clone到themes目录下"><span class="toc-text">1. 将主题clone到themes目录下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-修改配置文件"><span class="toc-text">2. 修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-清理并重新生成站点"><span class="toc-text">3. 清理并重新生成站点</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、准备"><span class="toc-text">一、准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是Hexo"><span class="toc-text">1. 什么是Hexo?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-GitHub账号"><span class="toc-text">2. GitHub账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-node-js"><span class="toc-text">3. node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-环境配置-git-node-js"><span class="toc-text">4. 环境配置 git+node.js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Hexo安装配置"><span class="toc-text">二、Hexo安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用npm进行Hexo安装"><span class="toc-text">1.使用npm进行Hexo安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Hexo建站"><span class="toc-text">2. Hexo建站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Hexo站点测试"><span class="toc-text">3.Hexo站点测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Hexo-config-yml网站配置"><span class="toc-text">4.Hexo _config.yml网站配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Hexo-写博文"><span class="toc-text">5.Hexo 写博文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Hexo部署到Git"><span class="toc-text">三、Hexo部署到Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-配置github-pages"><span class="toc-text">1.配置github pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改Hexo配置文件关联github-pages"><span class="toc-text">2.修改Hexo配置文件关联github pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装插件"><span class="toc-text">3.安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-将本地站点部署到GitHub上"><span class="toc-text">4.将本地站点部署到GitHub上</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、更换主题"><span class="toc-text">四、更换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-将主题clone到themes目录下"><span class="toc-text">1. 将主题clone到themes目录下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改配置文件"><span class="toc-text">2. 修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-清理并重新生成站点"><span class="toc-text">3. 清理并重新生成站点</span></a></li></ol></li></ol>
         
     </div>
 </aside>

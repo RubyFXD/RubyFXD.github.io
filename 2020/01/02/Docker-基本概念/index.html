@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Ruby&#39;s Blogs">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="Docker">
+
+
+    <meta name="description" content="一、Why Docker?&emsp;&emsp;Problem - 软件开发中的问题:&emsp;&emsp;环境配置是软件开发过程中的难题，不同的计算机可能使用不同的操作系统，有不同的系统配...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Docker 基本概念 | Ruby&#39;s Blogs</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Ruby&#39;s Blogs" type="application/atom+xml">
+
+
+    <link rel="icon" href="/personal_icon.jpeg">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="RubyFXD">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 你需要一点点勇气 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">Ruby&#39;s Blogs</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/算法/"><i class="fa "></i>算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据/"><i class="fa "></i>数据</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Docker 基本概念">
+            
+	            Docker 基本概念
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/后端/">后端</a> <a class="category-link" href="/categories/后端/Docker/">Docker</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Docker/">Docker</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/01/02</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="一、Why-Docker"><a href="#一、Why-Docker" class="headerlink" title="一、Why Docker?"></a>一、Why Docker?</h3><p>&emsp;&emsp;<b>Problem - 软件开发中的问题:</b><br><br>&emsp;&emsp;环境配置是软件开发过程中的难题，不同的计算机可能使用不同的操作系统，有不同的系统配置。一个软件可以执行的必要条件是，软件的运行依赖存在，并且对操作系统进行了正确的配置。<br><br>&emsp;&emsp;所以当软件从开发环境移植到，客户机运行环境、或者测试环境的时候，可能因为操作系统设置不正确或者缺少依赖，而不能运行。比如运行JAVA应用程序，必须有JRE，还需要配置JAVA环境变量。<br><br>&emsp;&emsp;简而言之，软件运行因为需要在不同机器上配置环境变量，引入依赖库。就会变的十分复杂，操作冗余。 </p>
+<p>&emsp;&emsp;<b>Solution - 软件带所需环境安装：</b><br><br>&emsp;&emsp;（1）虚拟机<br><br>&emsp;&emsp;虚拟机是一种软件带环境安装的方法，虚拟机是对硬件的一种抽象，可以将一个服务器拆分成多台服务器。Hypervisor允许多个VM在一个物理机上运行，每个VM都包括一份独立的对操作系统，应用软件，必要的二进制文件和库的复制。从而做到软件带环境安装到虚拟机。</p>
+<center>
+<img src="/2020/01/02/Docker-基本概念/vm.png" title="Figure 1 VM">
+</center>
+<center>图1 VM</center>
+
+<p>&emsp;&emsp;（2）Docker<br><br>&emsp;&emsp;Docker是软件带环境安装的另外一种方法，docker容器是对app层的抽象，Docker容器将代码和依赖打包。多个容器可以同时运行在一个物理机上 并且共享操作系统内核，每一个容器都可以被视为相互独立且隔离的进程。容器是基于沙盒机制的，容器之间不会有任何接口。</p>
+<center>
+<img src="/2020/01/02/Docker-基本概念/docker.png" title="Figure 2 Docker">
+</center>
+<center>图2 Docker</center>
+
+<p>&emsp;&emsp;（3）Docker容器 vs VM</p>
+<ul>
+<li>容器是进程级别的，只包含用到的资源，容量小，启动速度快。容器运行在操作系统上，和宿主机器共享硬件资源和操作系统，可以实现资源的动态分配。容器包含应用和依赖包，与其他容器共享内核。在宿主操作系统中，用户控件以分离的进程运行。可以最优化操作系统内存的应用。<br></li>
+<li>虚拟机需要模拟整个机器包括硬件，每个虚拟机都有自己的操作系统。虚拟机被启动之后，分配给虚拟机的所有资源都会被占用，虚拟机除了包含应用程序，二进制和库，还有一个完成的用户操作系统。所以，资源有些浪费，并且启动速度缓慢。</li>
+</ul>
+<h3 id="二、什么是Docker"><a href="#二、什么是Docker" class="headerlink" title="二、什么是Docker?"></a>二、什么是Docker?</h3><p>&emsp;&emsp;Docker是一个开源的容器引擎，开发者可以将应用程序和程序所依赖的包，一起打包到一个文件中，运行文件即可产生一个虚拟容器，程序在虚拟容器中运行，无需考虑物理机运行环境的不同。</p>
+<h3 id="三、Docker架构及基本概念"><a href="#三、Docker架构及基本概念" class="headerlink" title="三、Docker架构及基本概念"></a>三、Docker架构及基本概念</h3><center>
+<img src="/2020/01/02/Docker-基本概念/docker架构.png" title="Figure 3 Docker 架构">
+</center>
+<center>图3 Docker架构</center>
+
+<h4 id="Docker架构图中包含如下几个部分："><a href="#Docker架构图中包含如下几个部分：" class="headerlink" title="Docker架构图中包含如下几个部分："></a>Docker架构图中包含如下几个部分：<br></h4><p>&emsp;&emsp;（1）Docker Client客户端：Docker客户端可以通过命令行或者其他工具，调用Docker Engin API与 Docker守护进程Daemon进行通信。<br><br>&emsp;&emsp;（2）Docker Machine：是一个简化了的docker命令行安装工具，通过简单的命令可以在不同的平台上安装docker。<br><br>&emsp;&emsp;（3）Docker Hosts主机：运行Docker守护进程daemon和容器container的，物理或者虚拟机器，可以是local本地主机或者remote远程主机。<br><br>&emsp;&emsp;（4）Docker Daemon守护进程：运行在宿主机后台，等待接收来自客户端的消息，Docker客户端通过调用API与守护进程交互，执行对应操作，如容器的创建，运行，暂停，终止，删除。<br><br>&emsp;&emsp;（5）Docker Image镜像：镜像image是用来创建容器container的模版，一个宿主机上可以存在多个镜像（image1、image3), 一个镜像可以创建多个容器（container3a、container3b），类似于Java中类与对象的关系。镜像可以从Docker Hub上下载。<br><br>&emsp;&emsp;（6）Docker Container容器：容器是通过镜像创建的，容器是动态的，镜像是静态的，一个容器可以运行一个或者一组应用，内部可以安装任何软件和库文件，可以对内部环境变量做任何配置。每个容器之间都是相互隔离的，容器之间可以共享操作系统内核，但是不共享容器内部资源。<br><br>&emsp;&emsp;（7）Docker Registries注册服务器：注册服务器是存放镜像仓库的地方，一个registry可以包含多个repository, 每个repository中可以包含多个镜像，如不同版本的相关iamges, ubuntu:2.2, ubuntu:2.3 ….. ubuntu:latest。<br><br>&emsp;&emsp;（8）Docker Repository仓库：用来保存镜像，可以理解为代码控制中的代码仓库，类似于Maven的中央仓库。Docker公司的官方仓库存放在Docker Hub。Repository是开源项目，所以任何人都可以部署自己的私有仓库并注册在private registry，类似push到github。</p>
+<h4 id="Docker架构："><a href="#Docker架构：" class="headerlink" title="Docker架构："></a>Docker架构：</h4><p>&emsp;&emsp;Docker采用C/S架构，客户端通过调用远程API管理Docker容器，Docker daemon作为服务端接受来自客户端的请求，并执行相应任务。客户端可服务器可以在同一个宿主机，可以个在不同机器上。</p>
+<h3 id="四、容器云技术-kubernets和swarm"><a href="#四、容器云技术-kubernets和swarm" class="headerlink" title="四、容器云技术 kubernets和swarm"></a>四、容器云技术 kubernets和swarm</h3><ul>
+<li>两者都是容器的编排服务，把底层的宿主主机抽象化，然后将应用从镜像开始，以docker的方式部署到宿主机上</li>
+<li>Kubernetes: 轻量级、以实现核心功能为重、实施快速、适合小规模部署</li>
+<li>Swarm: 企业级、功能全、支持场景多、适合做企业级docker云方案</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">RubyFXD</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/16/五大常用算法-贪心法/" class="next-post btn btn-default" title="五大常用算法 - 贪心法">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">五大常用算法 - 贪心法</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Why-Docker"><span class="toc-text">一、Why Docker?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、什么是Docker"><span class="toc-text">二、什么是Docker?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Docker架构及基本概念"><span class="toc-text">三、Docker架构及基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker架构图中包含如下几个部分："><span class="toc-text">Docker架构图中包含如下几个部分：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker架构："><span class="toc-text">Docker架构：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、容器云技术-kubernets和swarm"><span class="toc-text">四、容器云技术 kubernets和swarm</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
